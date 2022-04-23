@@ -8,39 +8,20 @@ import axios from 'axios';
 const HomeScreen = () => {
   const [full, setFull] = useState(false);
   const navigation = useNavigation()
+
+  const makeAPICall = async () => {
+    try {
+      const response = await fetch('https://fir-febcf-default-rtdb.firebaseio.com', {mode:'no-cors'});
+      const data = await response;
+      console.log(data)
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
   
   useEffect(() => {
-  //   axios.get('https://fir-febcf-default-rtdb.firebaseio.com'), {
-  //   headers: {
-  //     "x-apikey": "API_KEY",
-  //   },
-  //   responseType: "json",
-  // })
-  // .then(function (response) {
-  //   console.log("data", response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-  {
-    axios
-      .get("https://fir-febcf-default-rtdb.firebaseio.com", {
-        method: 'GET',
-        mode: 'no-cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-      withCredentials: true,
-      credentials: 'same-origin',
-      })
-      .then(function (response) {
-          console.log("data", response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-}
+    makeAPICall();
   },[]);
 
   const handleSignOut = () => {
